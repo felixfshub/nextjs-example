@@ -16,7 +16,7 @@ export default function Home() {
         <hr className="text-gray-300" />
 
         <Feature
-          title="Why I made this"
+          title="Why did you make this?"
           text="To learn Next.js"
           image="/images/working-at-home.png"
           reverse
@@ -32,6 +32,15 @@ export default function Home() {
             <a href="https://undraw.co/">Undraw.co</a>
           </p>
         </Feature>
+
+        <hr className="text-gray-300" />
+
+        <Feature
+          title="What about the banner image?"
+          text="Oh, that's from Pixabay"
+          image="/images/social-media-carousel.png"
+          reverse
+        ></Feature>
       </div>
     </main>
   );
