@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 
-export default function LandingPageNavbar() {
+const links = (
+  <>
+    <a href="/home">Home</a>
+    <a href="">Stuff</a>
+    <a href="">More stuff</a>
+  </>
+);
+
+export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -12,11 +20,7 @@ export default function LandingPageNavbar() {
           Next.js Example
         </a>
 
-        <ul className="hidden md:flex gap-6">
-          <a href="/">Home</a>
-          <a href="">Stuff</a>
-          <a href="">More stuff</a>
-        </ul>
+        <ul className="hidden md:flex gap-6">{links}</ul>
 
         <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
           ☰
@@ -28,11 +32,7 @@ export default function LandingPageNavbar() {
           open ? "max-h-40 pt-4" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col gap-4 p-2">
-          <a href="/">Home</a>
-          <a href="">Stuff</a>
-          <a href="">More stuff</a>
-        </ul>
+        <ul className="flex flex-col gap-4 p-2">{links}</ul>
       </div>
     </nav>
   );
