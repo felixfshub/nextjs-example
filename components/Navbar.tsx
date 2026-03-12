@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const links = (
   <>
-    <a href="/home">Home</a>
-    <a href="">Stuff</a>
-    <a href="">More stuff</a>
+    <Link href="/home">Home</Link>
+    <Link href="">Stuff</Link>
+    <Link href="">More stuff</Link>
   </>
 );
 
@@ -16,9 +17,9 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 w-full bg-white p-2 border-b border-gray-300">
       <div className="flex items-center justify-between">
-        <a href="/" className="text-2xl">
+        <Link href="/" className="text-2xl">
           Next.js Example
-        </a>
+        </Link>
 
         <ul className="hidden md:flex gap-6">{links}</ul>
 
