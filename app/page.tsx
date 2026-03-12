@@ -67,6 +67,13 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="mx-auto w-full max-w-4xl px-5">
+        <Feature
+          title="What are you waiting for?"
+          text="Go and click some links already!"
+          image="/images/waiting-for-you.png"
+        ></Feature>
+      </div>
       <Footer />
     </main>
   );
