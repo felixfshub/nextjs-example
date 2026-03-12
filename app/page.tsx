@@ -3,6 +3,7 @@ import Feature from "@/components/Feature";
 import LandingPageNavbar from "@/components/LandingPageNavbar";
 import Footer from "@/components/Footer";
 import ExternalLink from "@/components/ExternalLink";
+import Card from "@/components/Card";
 
 export default function Home() {
   return (
@@ -43,6 +44,27 @@ export default function Home() {
           image="/images/landing-page.png"
           reverse
         ></Feature>
+      </div>
+
+      <div className="flex flex-col gap-8 p-8 justify-center items-center w-full bg-primary text-on-primary">
+        <h1 className="text-center text-xl">What's in here</h1>
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-4xl">
+          <Card
+            image="/images/sweet-home.png"
+            title="Home"
+            text="The homepage"
+          />
+          <Card
+            image="/images/source-code.png"
+            title="Code"
+            text="Yeah, code"
+          />
+          <Card
+            image="/images/next-js.png"
+            title="Next.js"
+            text="Isn't that obvious??"
+          />
+        </div>
       </div>
 
       <Footer />
