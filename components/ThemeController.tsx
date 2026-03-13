@@ -9,7 +9,6 @@ export default function ThemeController() {
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log("Ran");
     const html = document.documentElement;
 
     if (LIGHT_ONLY_ROUTES.includes(pathname)) {
