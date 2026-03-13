@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
       <Article>
-        <h1>Welcome to the homepage!</h1>
+        <h1>About</h1>
         <p>Actually, this is an "Article" 🤔</p>
         <p>
           I created a React component named "Article" so that you can create
@@ -22,9 +22,9 @@ export default function Home() {
           <li>List item 3</li>
         </ul>
         <p>
-          All the text content in this page is actually wrapped in that
-          "Article" component, so that I don't have to style each heading and
-          paragraph individually.
+          All text content in this page is actually wrapped in that "Article"
+          component, so that I don't have to style each heading and paragraph
+          individually.
         </p>
       </Article>
     </div>

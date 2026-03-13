@@ -6,8 +6,8 @@ import Link from "next/link";
 const links = (
   <>
     <Link href="/home">Home</Link>
-    <Link href="">Stuff</Link>
-    <Link href="">More stuff</Link>
+    <Link href="/about">About</Link>
+    <Link href="/login">Login/Signup</Link>
   </>
 );
 
