@@ -7,7 +7,8 @@ const links = (
   <>
     <Link href="/home">Home</Link>
     <Link href="/about">About</Link>
-    <Link href="/login">Login/Signup</Link>
+    <Link href="/login">Login</Link>
+    <Link href="/signup">Signup</Link>
   </>
 );
 
