@@ -22,7 +22,7 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="sticky top-0 w-full p-2 border-b border-border bg-bg">
+    <nav className="sticky top-0 w-full p-2 border-b border-border bg-bg md:bg-bg/70 md:backdrop-blur-md">
       <div className="flex items-center justify-between">
         <Link href="/" className="text-2xl">
           Next.js Example
