@@ -10,6 +10,7 @@ const links = (
     <Link href="/about">About</Link>
     <Link href="/login">Login</Link>
     <Link href="/signup">Signup</Link>
+    <Link href="/other">Other</Link>
   </>
 );
 
