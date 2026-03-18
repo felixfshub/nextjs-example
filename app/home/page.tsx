@@ -1,9 +1,10 @@
 "use client";
 
+import SignIn from "@/components/SignIn";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("...");
 
   useEffect(() => {
     fetch("/api")
@@ -11,5 +12,10 @@ export default function Home() {
       .then((data) => setMessage(data.message));
   }, []);
 
-  return <p className="text-center m-4">{message}</p>;
+  return (
+    <div className="w-full max-w-4xl mx-auto p-4">
+      <p>{message}</p>
+      <SignIn />
+    </div>
+  );
 }
