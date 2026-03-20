@@ -48,29 +48,26 @@ export default function LandingPage() {
         <Feature
           image={landingPageImage}
           title="What about the banner image?"
-          text="Oh, that's from Pixabay"
           reverse
-        ></Feature>
+        >
+          <ExternalLink href="https://pixabay.com/">Pixabay</ExternalLink>
+        </Feature>
       </div>
 
       <div className="flex flex-col gap-8 p-8 justify-center items-center w-full bg-surface">
         <h1 className="text-center text-xl">What's in here</h1>
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-3 max-w-4xl">
-          <Card image={sweetHomeImage} title="Home" text="The homepage" />
-          <Card image={sourceCodeImage} title="Code" text="Yeah, code" />
-          <Card
-            image={nextjsImage}
-            title="Next.js"
-            text="Isn't that obvious??"
-          />
+          <Card image={sweetHomeImage} title="Pages" />
+          <Card image={sourceCodeImage} title="Code" />
+          <Card image={nextjsImage} title="Next.js" />
         </div>
       </div>
 
       <div className="mx-auto w-full max-w-4xl px-5">
         <Feature
           image={waitingForYouImage}
-          title="What are you waiting for?"
-          text="Go and click some links already!"
+          title="What should I do now?"
+          text="Clik the Sign In button!"
         ></Feature>
       </div>
       <Footer text="This is a footer" />
