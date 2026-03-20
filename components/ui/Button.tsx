@@ -1,7 +1,7 @@
 import { PropsWithChildren, ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 
-export default function ButtonPrimary({
+export default function Button({
   className,
   ...props
 }: PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>>) {

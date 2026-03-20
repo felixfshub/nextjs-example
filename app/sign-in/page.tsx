@@ -1,6 +1,6 @@
 "use client";
 
-import ButtonPrimary from "@/components/ui/ButtonPrimary";
+import Button from "@/components/ui/Button";
 import GithubIcon from "@/components/ui/icons/GitHubIcon";
 import Input from "@/components/ui/Input";
 import { signIn } from "next-auth/react";
@@ -20,9 +20,9 @@ export default function SignIn() {
           className="flex-1"
           placeholder="Email"
         />
-        <ButtonPrimary type="submit" className="shrink-0 whitespace-nowrap">
+        <Button type="submit" className="shrink-0 whitespace-nowrap">
           Sign In
-        </ButtonPrimary>
+        </Button>
       </form>
       <div className="flex items-center gap-2">
         <hr className="flex-1 text-border" />
@@ -38,7 +38,7 @@ export default function SignIn() {
       </button>
 
       <Link href={"/"} className="mt-2">
-        <ButtonPrimary>Go back</ButtonPrimary>
+        <Button>Go back</Button>
       </Link>
     </div>
   );
