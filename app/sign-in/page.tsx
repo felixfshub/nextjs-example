@@ -10,13 +10,25 @@ export default function SignIn() {
 
   return (
     <div className="flex flex-col w-full min-h-screen justify-center max-w-lg mx-auto p-4">
-      <form action={resendAction}>
-        <label htmlFor="email-resend">
-          Email
-          <input type="email" id="email-resend" name="email" />
-        </label>
-        <input type="submit" value="Signin with Resend" />
+      <form action={resendAction} className="flex w-full gap-2">
+        <input
+          type="email"
+          name="email"
+          className="flex-1 border border-border"
+          placeholder="Email"
+        />
+        <button
+          type="submit"
+          className="shrink-0 whitespace-nowrap bg-primary cursor-pointer"
+        >
+          Sign In
+        </button>
       </form>
+      <div className="my-4 flex items-center gap-4">
+        <hr className="flex-1 text-border" />
+        <p>or</p>
+        <hr className="flex-1 text-border" />
+      </div>
 
       <button
         className="flex items-center justify-center w-full p-1 gap-2 hover:bg-bg-hover hover:cursor-pointer border border-border rounded"
