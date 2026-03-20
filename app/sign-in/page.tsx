@@ -1,5 +1,6 @@
 "use client";
 
+import ButtonPrimary from "@/components/ui/ButtonPrimary";
 import GithubIcon from "@/components/ui/icons/GitHubIcon";
 import { signIn } from "next-auth/react";
 
@@ -17,12 +18,9 @@ export default function SignIn() {
           className="flex-1 border border-border"
           placeholder="Email"
         />
-        <button
-          type="submit"
-          className="shrink-0 whitespace-nowrap bg-primary cursor-pointer"
-        >
+        <ButtonPrimary type="submit" className="shrink-0 whitespace-nowrap">
           Sign In
-        </button>
+        </ButtonPrimary>
       </form>
       <div className="my-4 flex items-center gap-4">
         <hr className="flex-1 text-border" />
