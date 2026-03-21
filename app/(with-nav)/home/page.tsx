@@ -1,9 +1,10 @@
 "use client";
 
+import Article from "@/components/ui/Article";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [message, setMessage] = useState("...");
+  const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
     fetch("/api")
@@ -13,7 +14,10 @@ export default function Home() {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      <p>{message}</p>
+      <Article>
+        <h1>Homepage</h1>
+        <p>{message}</p>
+      </Article>
     </div>
   );
 }
