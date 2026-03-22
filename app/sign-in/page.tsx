@@ -36,6 +36,13 @@ export default function SignIn() {
 
         <button
           className="flex items-center justify-center w-full p-1 gap-2 hover:bg-bg-hover hover:cursor-pointer border border-border rounded"
+          onClick={() => signIn("google")}
+        >
+          Sign in with google
+        </button>
+
+        <button
+          className="flex items-center justify-center w-full p-1 gap-2 hover:bg-bg-hover hover:cursor-pointer border border-border rounded"
           onClick={() => signIn("github")}
         >
           <GithubIcon className="w-4 h-4" /> Sign in with GitHub
