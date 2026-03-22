@@ -23,7 +23,7 @@ export default function SignIn() {
             type="email"
             name="email"
             className="flex-1"
-            placeholder="Not supported"
+            placeholder="Currently not supported"
             disabled
           />
           <Button type="submit" className="shrink-0 whitespace-nowrap" disabled>
@@ -41,7 +41,7 @@ export default function SignIn() {
           onClick={() => signIn("google")}
         >
           <GoogleIcon className="w-4 h-4" />
-          Sign in with google
+          Sign in with Google
         </button>
 
         <button

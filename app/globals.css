@@ -12,6 +12,7 @@
   --color-primary-hover: oklch(0.5406 0.2237 279.77);
   --color-primary-active: oklch(0.5181 0.2237 279.77);
   --color-on-primary: var(--color-white);
+  --color-primary-disabled: rgb(205, 205, 205);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +28,7 @@
     --color-primary-hover: oklch(0.5406 0.1897 279.77);
     --color-primary-active: oklch(0.5181 0.1897 279.77);
     --color-on-primary: var(--color-white);
+    --color-primary-disabled: rgb(65, 65, 65);
   }
 }
 
@@ -45,4 +47,5 @@
   --color-primary-hover: var(--color-primary-hover);
   --color-primary-active: var(--color-primary-active);
   --color-on-primary: var(--color-on-primary);
+  --color-primary-disabled: var(--color-primary-disabled);
 }
