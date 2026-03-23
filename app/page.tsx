@@ -8,7 +8,7 @@ export default function LandingPage() {
     <div className="flex flex-col gap-4 w-full min-h-[75vh] justify-center items-center max-w-lg mx-auto p-4">
       <Image src={FSImage} className="w-40" alt="fs Image" priority />
       <h1 className="text-6xl">Welcome</h1>
-      <Link href="/sign-in/">
+      <Link href="/home">
         <Button>Sign in</Button>
       </Link>
     </div>
