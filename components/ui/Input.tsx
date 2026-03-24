@@ -7,7 +7,7 @@ export default function Input({
 }: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
-      className={clsx("p-1 rounded border border-border", className)}
+      className={clsx("p-1 rounded-lg border border-border", className)}
       {...props}
     />
   );
