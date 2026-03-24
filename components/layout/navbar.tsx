@@ -32,7 +32,7 @@ const navContents = (
     </Link>
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button>Sign Out</Button>
+        <Button variant="outline">Sign Out</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -44,6 +44,7 @@ const navContents = (
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
+            variant="destructive"
             onClick={() => {
               signOut();
             }}
