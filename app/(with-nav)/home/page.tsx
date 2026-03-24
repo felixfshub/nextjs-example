@@ -7,9 +7,11 @@ import Button from "@/components/ui/Button";
 
 export default function Home() {
   const [message, setMessage] = useState("Loading...");
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    setMounted(true);
     fetch("/api")
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
@@ -26,7 +28,7 @@ export default function Home() {
           designed for effortless theme management (light/dark mode) in Next.js
           applications, supporting both App and Pages routers.
         </p>
-        <p>Current theme: {theme}</p>
+        <p>Current theme: {mounted ? theme : "Loading..."}</p>
         <div className="flex gap-2 flex-wrap">
           <Button onClick={() => setTheme("light")}>Light</Button>
           <Button onClick={() => setTheme("dark")}>Dark</Button>
