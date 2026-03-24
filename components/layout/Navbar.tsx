@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "../ui/mode-toggle";
 
 const navContents = (
   <>
@@ -14,6 +15,7 @@ const navContents = (
     <Link className="hover:text-text-muted" href="/wip">
       WIP
     </Link>
+    <ModeToggle />
     <Button
       onClick={() => {
         signOut();
