@@ -27,9 +27,7 @@ export default function LandingPage() {
         </CardHeader>
         <CardFooter>
           <Link href="/home" className="w-full">
-            <Button size="lg" className="w-full">
-              Open App
-            </Button>
+            <Button className="w-full">Open App</Button>
           </Link>
         </CardFooter>
       </Card>
