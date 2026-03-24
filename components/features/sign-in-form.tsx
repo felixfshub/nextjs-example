@@ -1,8 +1,8 @@
 "use client";
 
-import GoogleIcon from "@/components/ui/icons/GoogleIcon";
-import GitHubIcon from "@/components/ui/icons/GitHubIcon";
-import Input from "@/components/ui/Input";
+import GoogleIcon from "@/components/icons/google-icon";
+import GitHubIcon from "@/components/icons/github-icon";
+import Input from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 

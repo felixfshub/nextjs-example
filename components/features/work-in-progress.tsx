@@ -1,4 +1,4 @@
-import Spinner from "./Spinner";
+import Spinner from "../ui/spinner";
 
 export default function WorkInProgress() {
   return (

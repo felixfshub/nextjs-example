@@ -1,6 +1,6 @@
 "use client";
 
-import Article from "@/components/ui/Article";
+import Article from "@/components/ui/article";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
