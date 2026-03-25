@@ -75,11 +75,11 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`absolute left-0 right-0 overflow-hidden mt-2 transition-all duration-300 md:hidden border-b border-border bg-card ${
-          open ? "max-h-60 pt-4" : "max-h-0"
+        className={`absolute left-0 right-0 overflow-hidden mt-2 transition-[max-height,padding] duration-300 md:hidden border-b border-border bg-card ${
+          open ? "max-h-60 pt-2" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col gap-4 p-2">
+        <ul className="flex flex-col gap-4 p-2 pt-0">
           <NavContents />
         </ul>
       </div>
