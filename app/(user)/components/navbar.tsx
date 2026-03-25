@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 w-full p-2 border-b border-border bg-background md:bg-background/90 md:backdrop-blur z-50">
       <div className="flex items-center justify-between">
-        <Link href="/" className="text-2xl">
+        <Link href="/" className="text-xl font-semibold">
           Next.js Example
         </Link>
 
