@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, ReactNode } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import { SessionProvider, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import useOnClickOutside from "@/hooks/use-on-click-outside";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -42,14 +43,20 @@ import {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  useOnClickOutside(containerRef, () => setOpen(false));
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   return (
-    <nav className="sticky top-0 w-full p-2 border-b border-border bg-card md:bg-card/90 md:backdrop-blur z-50">
+    <nav
+      ref={containerRef}
+      className="sticky top-0 w-full p-2 border-b border-border bg-card md:bg-card/90 md:backdrop-blur z-50"
+    >
       <div className="flex items-center justify-between">
         <Link href="/" className="text-2xl font-bold font-heading">
           Next.js Example
