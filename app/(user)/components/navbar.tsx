@@ -51,7 +51,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 w-full p-2 border-b border-border bg-card md:bg-card/90 md:backdrop-blur z-50">
       <div className="flex items-center justify-between">
-        <Link href="/" className="text-xl font-semibold">
+        <Link href="/" className="text-2xl font-bold font-heading">
           Next.js Example
         </Link>
 
@@ -157,7 +157,9 @@ function UserMenuContent() {
           />
         )}
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl">{session?.user?.name}</h1>
+          <h1 className="text-2xl font-heading font-bold">
+            {session?.user?.name}
+          </h1>
           <p className="text-muted-foreground">{session?.user?.email}</p>
         </div>
       </div>
