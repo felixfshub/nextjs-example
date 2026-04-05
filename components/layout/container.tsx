@@ -10,7 +10,7 @@ export default function Container({
 }) {
   return (
     <div
-      className={cn("bg-card p-4 border border-border rounded-lg", className)}
+      className={cn("p-4 border border-border rounded-lg bg-card", className)}
     >
       {children}
     </div>
