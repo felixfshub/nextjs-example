@@ -11,6 +11,7 @@ export default function Article({ children }: { children: ReactNode }) {
         [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:font-heading
         [&_h4]:text-xl [&_h4]:font-semibold
         [&_ul]:list-disc [&_ul]:ml-6 
+        [&_p]:text-base
       "
     >
       {children}
