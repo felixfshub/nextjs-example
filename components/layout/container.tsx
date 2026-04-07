@@ -9,9 +9,7 @@ export default function Container({
   children?: ReactNode;
 }) {
   return (
-    <div
-      className={cn("p-4 border border-border rounded-lg bg-card", className)}
-    >
+    <div className={cn("p-4 border border-border rounded bg-card", className)}>
       {children}
     </div>
   );
