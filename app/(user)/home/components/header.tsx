@@ -1,6 +1,7 @@
 import Image from "next/image";
 import fsImage from "@/assets/fs.png";
 import { Button } from "@/components/ui/button";
+import GithubIcon from "@/components/icons/github-icon";
 
 export default function Header() {
   return (
@@ -15,7 +16,10 @@ export default function Header() {
         An all-in-one Next.js application
       </p>
       <a href="https://github.com/faseehfs/nextjs-example">
-        <Button>View on GitHub</Button>
+        <Button>
+          <GithubIcon />
+          View on GitHub
+        </Button>
       </a>
     </div>
   );
