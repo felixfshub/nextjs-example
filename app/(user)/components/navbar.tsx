@@ -71,8 +71,7 @@ function NavContents() {
   return (
     <>
       <NavLink href="/home">Home</NavLink>
-      <NavLink href="/wip">WIP</NavLink>
-      <NavLink href="/test">Tests</NavLink>
+      <NavLink href="/test">Test</NavLink>
     </>
   );
 }
