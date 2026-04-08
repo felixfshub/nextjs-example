@@ -39,7 +39,9 @@ export default function AppContents() {
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button>Visit</Button>
+          <Link href="/tailwind-animations">
+            <Button>Visit</Button>
+          </Link>
         </CardFooter>
       </Card>
       <Card>
