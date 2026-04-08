@@ -60,7 +60,9 @@ export default function Navbar() {
       </div>
 
       <NavOverlay
-        className={cn("z-5", { [open ? "opacity-100" : "opacity-0"]: true })}
+        className={cn("z-5", {
+          [open ? "opacity-100" : "opacity-0 pointer-events-none"]: true,
+        })}
       />
     </nav>
   );
