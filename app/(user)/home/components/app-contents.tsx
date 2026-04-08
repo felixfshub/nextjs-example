@@ -30,67 +30,67 @@ export default function AppContents() {
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>WIP</CardTitle>
+          <CardTitle>Coming soon</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Description of the feature. Leins skg ksen ke alk akks. Aing s king.
+            Sin city's cold and empty. No one's around to judge me.
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button>Visit</Button>
+          <Button disabled>Visit</Button>
         </CardFooter>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>WIP</CardTitle>
+          <CardTitle>Coming soon</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Description of the feature. Leins skg ksen ke alk akks. Aing s king.
+            Sin city's cold and empty. No one's around to judge me.
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button>Visit</Button>
+          <Button disabled>Visit</Button>
         </CardFooter>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>WIP</CardTitle>
+          <CardTitle>Coming soon</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Description of the feature. Leins skg ksen ke alk akks. Aing s king.
+            Sin city's cold and empty. No one's around to judge me.
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button>Visit</Button>
+          <Button disabled>Visit</Button>
         </CardFooter>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>WIP</CardTitle>
+          <CardTitle>Coming soon</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Description of the feature. Leins skg ksen ke alk akks. Aing s king.
+            Sin city's cold and empty. No one's around to judge me.
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button>Visit</Button>
+          <Button disabled>Visit</Button>
         </CardFooter>
       </Card>
       <Card>
         <CardHeader>
-          <CardTitle>WIP</CardTitle>
+          <CardTitle>Coming soon</CardTitle>
         </CardHeader>
         <CardContent>
           <CardDescription>
-            Description of the feature. Leins skg ksen ke alk akks. Aing s king.
+            Sin city's cold and empty. No one's around to judge me.
           </CardDescription>
         </CardContent>
         <CardFooter>
-          <Button>Visit</Button>
+          <Button disabled>Visit</Button>
         </CardFooter>
       </Card>
     </div>
