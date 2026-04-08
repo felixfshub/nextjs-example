@@ -22,6 +22,9 @@ export default function About() {
           by the private company Vercel providing React-based web applications
           with server-side rendering and static rendering.
         </p>
+        <a href="https://nextjs.org/docs">
+          <Button variant="outline">Read the Docs</Button>
+        </a>
         <p>
           React documentation mentions Next.js among "Recommended Toolchains"
           advising it to developers when "building a server-rendered website
@@ -29,9 +32,6 @@ export default function About() {
           content in the client-side browser, Next.js extends this functionality
           to include applications rendered on the server-side.
         </p>
-        <a href="https://nextjs.org/docs">
-          <Button variant="outline">Read the Docs</Button>
-        </a>
       </Article>
     </div>
   );
