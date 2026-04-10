@@ -80,8 +80,8 @@ function UserMenuContent() {
         </div>
       </div>
       <p>
-        This is your User Menu. There is nothing much here other than the sign
-        out button, but I will add stuff later.
+        This is your User Menu. There isn't much here besides the sign out
+        button, but I’ll be adding more soon.
       </p>
       <SignOutButton />
     </div>
