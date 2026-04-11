@@ -1,8 +1,8 @@
-import sql from "@/lib/db";
+import { prisma } from "@/prisma";
 
 export async function GET() {
   try {
-    await sql`SELECT 1;`;
+    await prisma.$queryRaw`SELECT 1;`;
 
     return Response.json(
       { message: "Hello from api, db is working" },
