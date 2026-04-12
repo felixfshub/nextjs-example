@@ -19,8 +19,8 @@ export default function CreatePostPage() {
 
     try {
       await createPost({ title, content });
-      // Redirect to home page after successful creation
-      router.push("/home");
+      // Redirect
+      router.push("/feature/post");
     } catch (error) {
       console.error("Failed to create post:", error);
       alert("Failed to create post. Please try again.");

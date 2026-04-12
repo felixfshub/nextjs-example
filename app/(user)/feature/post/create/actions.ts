@@ -19,5 +19,5 @@ export async function createPost(data: { title: string; content: string }) {
     },
   });
 
-  revalidatePath("/posts");
+  revalidatePath("/feature/post");
 }

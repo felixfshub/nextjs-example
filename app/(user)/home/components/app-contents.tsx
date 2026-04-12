@@ -16,14 +16,17 @@ export default function AppContents() {
       description:
         "Tailwind provides utility classes to animate your components without touching CSS.",
       href: "/feature/tailwind-animations",
-      disabled: false,
+    },
+    {
+      title: "Posts",
+      description: "Write your own posts or read posts written by other users.",
+      href: "/feature/post",
     },
     ...Array(5).fill({
       title: "Coming soon",
       description:
         "I look around and, Sin city's cold and empty... No one's around to judge me...",
       href: null,
-      disabled: true,
     }),
   ];
 
