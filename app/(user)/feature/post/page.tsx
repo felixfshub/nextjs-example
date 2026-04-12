@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
@@ -46,7 +47,28 @@ export default async function PostPage() {
                   {post.content ?? "No content provided."}
                 </p>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
-                  <span>By {post.author?.name ?? "Unknown author"}</span>
+                  <div className="flex items-center gap-2">
+                    {post.author?.image ? (
+                      <Image
+                        src={post.author.image}
+                        width={24}
+                        height={24}
+                        alt={`Avatar of ${post.author?.name ?? "author"}`}
+                        className="rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[0.65rem] font-semibold uppercase text-muted-foreground">
+                        {post.author?.name
+                          ? post.author.name
+                              .split(" ")
+                              .map((part) => part[0])
+                              .slice(0, 2)
+                              .join("")
+                          : "?"}
+                      </div>
+                    )}
+                    <span>By {post.author?.name ?? "Unknown author"}</span>
+                  </div>
                   <span>{new Date(post.createdAt).toLocaleString()}</span>
                 </div>
               </CardContent>
