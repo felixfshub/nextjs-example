@@ -103,7 +103,7 @@ function NavContents() {
         </Button>
 
         {openMenu && (
-          <div className="fixed left-2 mt-1 md:absolute md:left-0 md:mt-4 w-48 bg-card border border-border rounded-md shadow-lg p-2 z-50">
+          <div className="fixed left-2 mt-1 md:absolute md:left-0 md:mt-4 w-70 bg-card border border-border rounded-md shadow-lg p-2 z-50">
             {features.map((card) => (
               <Link
                 key={card.title}
