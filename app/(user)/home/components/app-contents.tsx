@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { featureCards } from "../../config/navigation";
+import { features } from "../../config/navigation";
 
 export default function AppContents() {
   const cards = [
-    ...featureCards,
+    ...features,
     ...Array(4).fill({
       title: "Coming soon",
       description:

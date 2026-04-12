@@ -23,7 +23,7 @@ export const navigationMenu: NavigationItem[] = [
   },
 ];
 
-export const featureCards: NavigationItem[] = [
+export const features: NavigationItem[] = [
   {
     title: "Tailwind Animations",
     description:

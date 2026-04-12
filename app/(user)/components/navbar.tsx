@@ -10,7 +10,7 @@ import Link from "next/link";
 import useOnClickOutside from "@/hooks/use-on-click-outside";
 import { cn } from "@/lib/utils";
 import UserMenu from "./user-menu";
-import { navigationMenu, featureCards } from "../config/navigation";
+import { navigationMenu, features } from "../config/navigation";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -104,7 +104,7 @@ function NavContents() {
 
         {openMenu && (
           <div className="fixed left-2 mt-1 md:absolute md:left-0 md:mt-4 w-48 bg-card border border-border rounded-md shadow-lg p-2 z-50">
-            {featureCards.map((card) => (
+            {features.map((card) => (
               <Link
                 key={card.title}
                 onClick={() => {
