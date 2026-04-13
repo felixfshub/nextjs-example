@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
-import { Trash } from "lucide-react";
+import { Trash, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CircleCheckBig } from "lucide-react";
@@ -20,6 +20,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 export default async function PostPage() {
   const posts = await prisma.post.findMany({
@@ -57,11 +58,20 @@ export default async function PostPage() {
           {posts.map((post) => (
             <Card key={post.id} className="overflow-hidden">
               <CardHeader>
-                <CardTitle>{post.title}</CardTitle>
+                <CardTitle>
+                  {post.isApproved ? post.title : "Content Removed"}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground mb-4 whitespace-pre-line">
-                  {post.content ?? "No content provided."}
+                <p
+                  className={cn(
+                    "text-sm text-muted-foreground mb-4 whitespace-pre-line",
+                    !post.isApproved && "italic",
+                  )}
+                >
+                  {post.isApproved
+                    ? post.content
+                    : "This post was removed because it was deemed inappropriate for this platform."}
                 </p>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
                   <div className="flex items-center gap-2">
