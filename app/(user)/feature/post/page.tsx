@@ -23,7 +23,7 @@ import {
 
 export default async function PostPage() {
   const posts = await prisma.post.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
     include: { author: true },
   });
 
