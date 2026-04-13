@@ -5,6 +5,7 @@ import { Moon, Sun, Contrast } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
+import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -54,23 +55,14 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={16}>
-        <DropdownMenuItem
-          onClick={() => setTheme("light")}
-          className={cn(theme === "light" && "bg-accent")}
-        >
-          Light
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light {mounted && theme === "light" && <Check />}
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("dark")}
-          className={cn(theme === "dark" && "bg-accent")}
-        >
-          Dark
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark {mounted && theme === "dark" && <Check />}
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setTheme("system")}
-          className={cn(theme === "system" && "bg-accent")}
-        >
-          System
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System {mounted && theme === "system" && <Check />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
