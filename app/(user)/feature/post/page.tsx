@@ -24,6 +24,10 @@ import { cn } from "@/lib/utils";
 
 export default async function PostPage() {
   const posts = await prisma.post.findMany({
+    where: {
+      isApproved: true,
+    },
+    take: 20,
     orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
     include: { author: true },
   });
