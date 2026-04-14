@@ -17,26 +17,14 @@ export default async function PostPage() {
   const session = await auth();
   const adminEmail = "faseeh1080@gmail.com";
 
-  const adminPosts = await prisma.post.findMany({
+  const posts = await prisma.post.findMany({
     where: {
       isApproved: true,
-      author: { email: adminEmail },
     },
+    take: 20,
     orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
     include: { author: true },
   });
-
-  const otherPosts = await prisma.post.findMany({
-    where: {
-      isApproved: true,
-      NOT: { author: { email: adminEmail } },
-    },
-    take: 20 - adminPosts.length,
-    orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
-    include: { author: true },
-  });
-
-  const posts = [...adminPosts, ...otherPosts];
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-5xl mx-auto p-4">

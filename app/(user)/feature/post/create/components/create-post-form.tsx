@@ -47,7 +47,8 @@ export default function CreatePostForm() {
         <CardTitle>Create New Post</CardTitle>
         <CardDescription>
           Share what’s new or noteworthy to you today. Focus on recent events,
-          ideas, or updates you want others to see.
+          ideas, or updates you want others to see. Your post will be displayed
+          first until someone else publishes a newer one.
         </CardDescription>
       </CardHeader>
       <CardContent>
