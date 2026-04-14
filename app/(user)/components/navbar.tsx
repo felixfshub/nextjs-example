@@ -91,7 +91,7 @@ export default function Navbar() {
 function NavContents() {
   return (
     <>
-      <Link href="/home">
+      <Link href="/">
         <Button variant="ghost">Home</Button>
       </Link>
       <Link href="/about">

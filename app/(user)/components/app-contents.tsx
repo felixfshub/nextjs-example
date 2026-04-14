@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { features } from "../../config/navigation";
+import { features } from "../config/navigation";
 
 export default function AppContents() {
   const cards = [

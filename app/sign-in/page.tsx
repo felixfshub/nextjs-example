@@ -54,7 +54,7 @@ export default function SignIn() {
             <div className="flex flex-col gap-2">
               <Button
                 variant="secondary"
-                onClick={() => signIn("google", { redirectTo: "/home" })}
+                onClick={() => signIn("google", { redirectTo: "/" })}
               >
                 <GoogleIcon className="w-4 h-4" />
                 Sign in with Google
@@ -62,7 +62,7 @@ export default function SignIn() {
 
               <Button
                 variant="secondary"
-                onClick={() => signIn("github", { redirectTo: "/home" })}
+                onClick={() => signIn("github", { redirectTo: "/" })}
               >
                 <GitHubIcon className="w-4 h-4" /> Sign in with GitHub
               </Button>
