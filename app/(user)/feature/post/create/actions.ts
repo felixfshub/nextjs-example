@@ -5,8 +5,8 @@ import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 const MAX_TITLE_CHARS = 100;
-const MAX_CHARS = 1000;
-const MAX_NEWLINES = 10;
+const MAX_CHARS = 500;
+const MAX_NEWLINES = 6;
 
 export async function createPost(data: { title: string; content: string }) {
   const session = await auth();
