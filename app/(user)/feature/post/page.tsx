@@ -128,7 +128,7 @@ function AdminBadge() {
   return (
     <Tooltip>
       <TooltipTrigger>
-        <ShieldUser className="size-4 text-chart-1" />
+        <ShieldUser className="size-4 text-admin-badge" />
       </TooltipTrigger>
       <TooltipContent>Admin</TooltipContent>
     </Tooltip>
