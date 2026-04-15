@@ -9,7 +9,7 @@ export default async function Test() {
       <Article>
         <h1>Status</h1>
         <p>
-          See the real-time health and availability of a website or its
+          See the real-time health and availability of this website and its
           individual services (e.g., API, database, login).
         </p>
       </Article>
