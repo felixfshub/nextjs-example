@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { DeletePostDialog } from "./components/delete-post-dialog";
+import { ArticleContainer } from "@/components/layout/article";
 
 export default async function PostPage() {
   const session = await auth();
@@ -27,8 +28,8 @@ export default async function PostPage() {
   });
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-5xl mx-auto p-4">
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <ArticleContainer>
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Posts</h1>
           <p className="text-sm text-muted-foreground mt-2">
@@ -109,7 +110,7 @@ export default async function PostPage() {
           ))}
         </div>
       )}
-    </div>
+    </ArticleContainer>
   );
 }
 

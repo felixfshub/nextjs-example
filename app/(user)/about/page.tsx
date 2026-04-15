@@ -1,9 +1,9 @@
-import Article from "@/components/ui/article";
+import { Article, ArticleContainer } from "@/components/layout/article";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
-    <div className="w-full max-w-2xl mx-auto p-4">
+    <ArticleContainer>
       <Article>
         <h1>About</h1>
         <p>
@@ -33,6 +33,6 @@ export default function About() {
           to include applications rendered on the server-side.
         </p>
       </Article>
-    </div>
+    </ArticleContainer>
   );
 }
