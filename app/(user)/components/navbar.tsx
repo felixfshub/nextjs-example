@@ -54,15 +54,9 @@ export default function Navbar() {
             >
               {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
-            {!session ? (
-              <Link href="/sign-in">
-                <Button>Sign In</Button>
-              </Link>
-            ) : (
-              <SessionProvider>
-                <UserMenu />
-              </SessionProvider>
-            )}
+            <SessionProvider>
+              <UserMenu />
+            </SessionProvider>
           </div>
         </div>
 

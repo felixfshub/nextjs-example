@@ -42,6 +42,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { changeUsername } from "./actions";
+import Link from "next/link";
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
@@ -49,12 +50,15 @@ export default function UserMenu() {
   return (
     <Drawer direction="right">
       <DrawerTrigger>
-        {status === "loading" && (
+        {status === "loading" ? (
           <div className="size-8 rounded-full bg-loading-skeleton animate-pulse" />
-        )}
-        {session?.user?.image && (
+        ) : !session ? (
+          <Link href="/sign-in">
+            <Button>Sign In</Button>
+          </Link>
+        ) : (
           <Image
-            src={session.user.image}
+            src={String(session?.user?.image)}
             width={240}
             height={240}
             alt="User Avatar"
