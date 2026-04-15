@@ -13,12 +13,11 @@ import features from "../../config/feature";
 export default function AppContents() {
   const cards = [
     ...features,
-    ...Array(4).fill({
+    {
       title: "Coming soon",
-      description:
-        "I look around and, Sin city's cold and empty... No one's around to judge me...",
+      description: "Stay tuned!",
       href: null,
-    }),
+    },
   ];
 
   return (
