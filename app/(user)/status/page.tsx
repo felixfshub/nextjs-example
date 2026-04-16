@@ -16,7 +16,7 @@ export default async function Test() {
 
       <Article>
         <h2>Pending</h2>
-        <p>None</p>
+        <p>User pages, posts by link.</p>
       </Article>
     </ArticleContainer>
   );
