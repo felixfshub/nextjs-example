@@ -41,8 +41,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { changeUsername } from "../(landing)/actions";
+import { changeUsername, updateProfileImage } from "../(landing)/actions";
 import Link from "next/link";
+import { Camera, Loader2, LogOut, UserPen } from "lucide-react";
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
@@ -111,6 +112,7 @@ function UserMenuContent() {
       {/* Actions */}
 
       <div className="flex flex-col">
+        <UploadProfileImageButton />
         <ChangeUsernameButton />
         <SignOutButton />
       </div>
@@ -136,6 +138,7 @@ function ChangeUsernameButton() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost" className="justify-start">
+          <UserPen className="mr-2 size-4" />
           Change Username
         </Button>
       </DialogTrigger>
@@ -174,6 +177,137 @@ function ChangeUsernameButton() {
   );
 }
 
+function UploadProfileImageButton() {
+  const [open, setOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+        "image/gif",
+      ];
+      if (!allowedTypes.includes(file.type)) {
+        setError(
+          "Invalid file type. Only JPEG, PNG, WebP, and GIF are allowed.",
+        );
+        return;
+      }
+
+      // Validate file size (100KB max)
+      const maxSize = 100 * 1024;
+      if (file.size > maxSize) {
+        setError("File too large. Maximum size is 100KB.");
+        return;
+      }
+
+      setError(null);
+      setSelectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = () => {
+    if (!selectedFile) return;
+
+    startTransition(async () => {
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+
+        const response = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || "Failed to upload image");
+        }
+
+        const data = await response.json();
+        await updateProfileImage(data.url);
+        setOpen(false);
+        setSelectedFile(null);
+        setPreviewUrl(null);
+        window.location.reload();
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to upload image");
+      }
+    });
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="ghost" className="justify-start">
+          <Camera className="mr-2 size-4" />
+          Upload Profile Image
+        </Button>
+      </DialogTrigger>
+
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Upload Profile Image</DialogTitle>
+          <DialogDescription>
+            Choose a new profile image. JPEG, PNG, WebP, and GIF up to 100KB are
+            supported.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="flex flex-col gap-4">
+          <Input
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            onChange={handleFileChange}
+            disabled={isPending}
+          />
+
+          {previewUrl && (
+            <div className="flex justify-center">
+              <Image
+                src={previewUrl}
+                width={120}
+                height={120}
+                alt="Preview"
+                className="w-30 h-30 rounded-full object-cover"
+              />
+            </div>
+          )}
+
+          {error && <p className="text-sm text-destructive">{error}</p>}
+        </div>
+
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline" disabled={isPending}>
+              Cancel
+            </Button>
+          </DialogClose>
+
+          <Button onClick={handleSubmit} disabled={!selectedFile || isPending}>
+            {isPending ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Uploading...
+              </>
+            ) : (
+              "Upload"
+            )}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function SignOutButton() {
   return (
     <AlertDialog>
@@ -182,6 +316,7 @@ function SignOutButton() {
           variant="ghost"
           className="justify-start text-destructive hover:text-destructive focus:text-destructive active:text-destructive"
         >
+          <LogOut className="mr-2 size-4" />
           Sign Out
         </Button>
       </AlertDialogTrigger>

@@ -26,3 +26,26 @@ export async function changeUsername(newUsername: string) {
 
   return { success: true };
 }
+
+export async function updateProfileImage(imageUrl: string) {
+  const session = await auth();
+
+  if (!session || !session.user || !session.user.id) {
+    redirect("/sign-in");
+  }
+
+  if (!imageUrl || imageUrl.trim().length < 1) {
+    throw new Error("Image URL is required");
+  }
+
+  try {
+    await prisma.user.update({
+      where: { id: session.user.id },
+      data: { image: imageUrl.trim() },
+    });
+  } catch {
+    throw new Error("Failed to update profile image");
+  }
+
+  return { success: true };
+}
