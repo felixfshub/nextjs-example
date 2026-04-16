@@ -13,13 +13,17 @@ export default async function Test() {
           individual services (e.g., API, database, login).
         </p>
       </Article>
-      <div className="rounded-xl bg-gray-800 p-4 mt-4 font-mono text-yellow-200">
+      <div className="rounded-xl bg-gray-800 p-4 my-4 font-mono text-yellow-200">
         <p>Registered users: {userCount}</p>
         <p>Uploaded posts: {postCount}</p>
         <p>
           Database: {typeof userCount === "number" ? "Working" : "Not working"}
         </p>
       </div>
+      <Article>
+        <h2>Pending</h2>
+        <p>None</p>
+      </Article>
     </ArticleContainer>
   );
 }
