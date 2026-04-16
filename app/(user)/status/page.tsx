@@ -14,8 +14,8 @@ export default async function Test() {
         </p>
       </Article>
       <div className="rounded-xl bg-gray-800 p-4 mt-4 text-yellow-200">
-        <p>Number of registered users: {userCount}</p>
-        <p>Number of uploaded posts: {postCount}</p>
+        <p>Registered users: {userCount}</p>
+        <p>Uploaded posts: {postCount}</p>
       </div>
     </ArticleContainer>
   );

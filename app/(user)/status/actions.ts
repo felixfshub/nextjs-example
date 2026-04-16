@@ -3,8 +3,8 @@
 import prisma from "@/lib/prisma";
 
 export async function getCounts(): Promise<{
-  userCount: number | null;
-  postCount: number | null;
+  userCount: number | string;
+  postCount: number | string;
 }> {
   try {
     const [userCount, postCount] = await Promise.all([
@@ -17,8 +17,8 @@ export async function getCounts(): Promise<{
     console.error("Error fetching counts:", error);
 
     return {
-      userCount: null,
-      postCount: null,
+      userCount: "Error",
+      postCount: "Error",
     };
   }
 }
