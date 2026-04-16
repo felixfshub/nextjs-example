@@ -42,7 +42,7 @@ export function DeletePostDialog({
       <DialogTrigger asChild>
         <Trash className="size-4 hover:text-destructive transition-all" />
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent aria-describedby="delete-post">
         <DialogHeader>
           <DialogTitle>
             {isOwner ? "Are you sure?" : "Unauthorized"}

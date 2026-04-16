@@ -400,7 +400,7 @@ function SignOutButton() {
           Sign Out
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent aria-describedby="sign-out">
         <AlertDialogHeader>
           <AlertDialogTitle>Do you want to sign out?</AlertDialogTitle>
           <AlertDialogDescription>
