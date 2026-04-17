@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { put } from "@vercel/blob";
+import { del, put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -40,12 +40,23 @@ export async function POST(request: Request) {
 
     // Generate a unique filename
     const timestamp = Date.now();
-    const filename = `profiles/${session.user.id}/${timestamp}-${file.name}`;
+    const safeName = file.name
+      .replace(/\.[^/.]+$/, "") // Remove original extension
+      .slice(0, 50) // Limit to 50 chars
+      .replace(/[^a-zA-Z0-9._-]/g, "_") // Replace unsafe chars
+      .replace(/_{2,}/g, "_"); // Collapse multiple underscores
+    const extension = file.name.split(".").pop()?.toLowerCase() || "";
+    const filename = `profiles/${session.user.id}/${timestamp}-${safeName}.${extension}`;
 
     // Upload to Vercel Blob
     const blob = await put(filename, file, {
       access: "public",
     });
+
+    // Delete old profile picture if exists
+    if (session.user.image) {
+      await del(session.user.image);
+    }
 
     return NextResponse.json({ url: blob.url });
   } catch (error) {

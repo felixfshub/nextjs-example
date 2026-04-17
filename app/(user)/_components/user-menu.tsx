@@ -257,17 +257,11 @@ function UploadProfileImageButton() {
         return;
       }
 
-      // Validate file size (100KB max)
-      const maxSize = 100 * 1024;
-      if (file.size > maxSize) {
-        setError("File too large. Maximum size is 100KB.");
-        return;
-      }
-
       setError(null);
       const previewUrl = URL.createObjectURL(file);
       setPreviewUrl(previewUrl);
 
+      const maxSize = 100 * 1024;
       try {
         const croppedBlob = await cropImageToSquare(previewUrl, file.type);
 
@@ -336,8 +330,8 @@ function UploadProfileImageButton() {
         <DialogHeader>
           <DialogTitle>Upload Profile Image</DialogTitle>
           <DialogDescription id="upload-image-description">
-            Choose a new profile image. JPEG, PNG, WebP, and GIF up to 100KB are
-            supported. The image will be cropped to a square.
+            Choose a new profile image. JPEG, PNG and WebP are supported. The
+            image will be cropped to a square.
           </DialogDescription>
         </DialogHeader>
 
