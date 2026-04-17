@@ -1,19 +1,3 @@
-import prisma from "@/lib/prisma";
-
 export async function GET() {
-  try {
-    await prisma.$queryRaw`SELECT 1;`;
-
-    return Response.json(
-      { message: "Hello from api, db is working" },
-      { status: 200 },
-    );
-  } catch (err) {
-    console.error(err);
-
-    return Response.json(
-      { message: "Hello from api, db is not working" },
-      { status: 500 },
-    );
-  }
+  return Response.json({ message: "Hello from API" }, { status: 200 });
 }
