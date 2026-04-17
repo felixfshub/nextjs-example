@@ -39,8 +39,7 @@ export default function PrivacyPolicyPage() {
 
         <h3>4. Your rights</h3>
         <p>
-          If you wish to have your account or posts deleted, please contact us
-          at{" "}
+          If you wish to have your account deleted, please contact us at{" "}
           <ExternalLink href="mailto:faseeh1080@gmail.com">
             faseeh1080@gmail.com
           </ExternalLink>
