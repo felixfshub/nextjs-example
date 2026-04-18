@@ -6,12 +6,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { TriangleAlert } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { DeletePostDialog } from "./_components/delete-post-dialog";
+import { auth } from "@/auth";
 
 export default async function PostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const session = await auth();
   const { slug } = await params;
 
   const post = await prisma.post.findUnique({
@@ -64,6 +67,11 @@ export default async function PostPage({
             </Link>
           </>
         )}
+
+        <DeletePostDialog
+          postId={post.id}
+          isOwner={post.authorId === session?.user?.id}
+        />
       </Article>
     </ArticleContainer>
   );

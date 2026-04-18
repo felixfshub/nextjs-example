@@ -11,7 +11,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { DeletePostDialog } from "./_components/delete-post-dialog";
 import { ArticleContainer } from "@/components/layout/article";
 
 export default async function PostPage() {
@@ -98,10 +97,6 @@ export default async function PostPage() {
                     {post.author.email === adminEmail && <AdminBadge />}
                   </div>
                   <div className="flex items-center gap-2">
-                    <DeletePostDialog
-                      postId={post.id}
-                      isOwner={post.authorId === session?.user?.id}
-                    />
                     {new Date(post.createdAt).toLocaleString()}
                     <Link href={`/feature/post/${post.id}`}>
                       <ArrowUpRight className="size-4" />

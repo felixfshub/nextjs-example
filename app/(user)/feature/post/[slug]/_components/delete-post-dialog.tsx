@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { deletePost } from "../create/actions"; // Adjust path as needed
+import { deletePost } from "../actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
@@ -45,7 +45,7 @@ export function DeletePostDialog({
       <DialogContent aria-describedby="delete-post">
         <DialogHeader>
           <DialogTitle>
-            {isOwner ? "Are you sure?" : "Unauthorized"}
+            {isOwner ? "Do you want to delete this post?" : "Unauthorized"}
           </DialogTitle>
           <DialogDescription>
             {isOwner ? (
