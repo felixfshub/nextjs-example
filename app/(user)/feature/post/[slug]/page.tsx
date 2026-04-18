@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { TriangleAlert } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export default async function PostPage({
   params,
@@ -42,7 +43,7 @@ export default async function PostPage({
         <p>{post.content}</p>
         {post.isApproved && (
           <>
-            <hr />
+            <Separator className="my-4" />
             <h2>Thanks for reading</h2>
             <p>
               Big thanks to{" "}
@@ -54,7 +55,7 @@ export default async function PostPage({
               alt="Author Image"
               width={71}
               height={71}
-              className="rounded-full"
+              className="rounded-full border border-border"
             />
             <Link href="/feature/post">
               <Button variant="link" className="px-0">
