@@ -50,7 +50,7 @@ export default function UserMenu() {
 
   return (
     <Drawer direction="right">
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         {status === "loading" ? (
           <div className="size-8 rounded-full bg-loading-skeleton animate-pulse" />
         ) : !session ? (

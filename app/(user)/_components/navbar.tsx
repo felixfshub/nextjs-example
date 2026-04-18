@@ -11,6 +11,7 @@ import useOnClickOutside from "@/hooks/use-on-click-outside";
 import { cn } from "@/lib/utils";
 import UserMenu from "./user-menu";
 import features from "../config/feature";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -60,15 +61,22 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div
-          className={`absolute left-0 z-8 right-0 overflow-hidden transition-[max-height,padding] duration-300 md:hidden border-b border-border bg-card ${
-            open ? "max-h-60 pt-2" : "max-h-0"
-          }`}
-        >
-          <ul className="flex flex-col p-2 pt-0">
-            <NavContents />
-          </ul>
-        </div>
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              key="mobile-nav"
+              initial={{ height: 0, transform: "translateY(-30px)" }}
+              animate={{ height: "auto", transform: "translateY(0)" }}
+              exit={{ height: 0, transform: "translateY(-30px)" }}
+              transition={{ duration: 0.28, ease: "easeInOut" }}
+              className="absolute inset-x-0 z-8 overflow-hidden border-b border-border bg-card md:hidden"
+            >
+              <ul className="flex flex-col p-2 pt-0">
+                <NavContents />
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {overlayVisible && (
@@ -91,12 +99,16 @@ function NavContents() {
       <Link href="/about">
         <Button variant="ghost">About</Button>
       </Link>
-      <FeaturesDropdown />
-      {features.map((card) => (
-        <Link key={card.title} className="md:hidden" href={String(card.href)}>
-          <Button variant="ghost">{card.title}</Button>
-        </Link>
-      ))}
+      <FeaturesDropdown className="hidden md:block" />
+      <div className="md:hidden flex flex-col p-2.5">
+        <h1 className="font-heading text-lg font-bold mb-2">Features</h1>
+        {features.map((card) => (
+          <Link key={card.title} className="pl-2" href={String(card.href)}>
+            <Button variant="ghost">{card.title}</Button>
+          </Link>
+        ))}
+      </div>
+
       <Link href="/privacy-policy">
         <Button variant="ghost">Privacy Policy</Button>
       </Link>
@@ -104,14 +116,14 @@ function NavContents() {
   );
 }
 
-function FeaturesDropdown() {
+function FeaturesDropdown({ className }: { className?: string }) {
   const [openMenu, setOpenMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(menuRef, () => setOpenMenu(false));
 
   return (
-    <div ref={menuRef} className="relative hidden md:block">
+    <div ref={menuRef} className={cn("relative", className)}>
       <Button
         variant="ghost"
         onClick={() => setOpenMenu(!openMenu)}
