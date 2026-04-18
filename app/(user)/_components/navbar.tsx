@@ -17,19 +17,10 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   const [open, setOpen] = useState(false);
-  const [overlayVisible, setOverlayVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useOnClickOutside(containerRef, () => setOpen(false));
-
-  useEffect(() => {
-    if (open) {
-      setOverlayVisible(true);
-    } else {
-      setTimeout(() => setOverlayVisible(false), 300);
-    }
-  }, [open]);
 
   useEffect(() => {
     setOpen(false);
@@ -71,21 +62,24 @@ export default function Navbar() {
               transition={{ duration: 0.28, ease: "easeInOut" }}
               className="absolute inset-x-0 z-8 overflow-hidden border-b border-border bg-card md:hidden"
             >
-              <ul className="flex flex-col p-2 pt-0">
+              <ul className="flex flex-col p-2 pb-4">
                 <NavContents />
               </ul>
             </motion.div>
           )}
         </AnimatePresence>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28 }}
+              className="fixed inset-0 bg-black/10 backdrop-blur-xs"
+            ></motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-      {overlayVisible && (
-        <NavOverlay
-          className={cn("z-5", {
-            [open ? "opacity-100" : "opacity-0"]: true,
-          })}
-        />
-      )}
     </nav>
   );
 }
@@ -165,16 +159,5 @@ function FeaturesDropdown({ className }: { className?: string }) {
         </div>
       )}
     </div>
-  );
-}
-
-function NavOverlay({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(
-        "fixed inset-0 md:hidden bg-black/10 backdrop-blur-xs transition-all duration-300",
-        className,
-      )}
-    ></div>
   );
 }
