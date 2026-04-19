@@ -30,7 +30,7 @@ export default function Navbar() {
     <nav className="sticky top-0 w-full z-50">
       <div ref={containerRef}>
         <div className="relative flex items-center justify-start bg-card border-b md:bg-card/90 md:backdrop-blur p-2 z-10">
-          <Link href="/" className="text-2xl font-bold font-heading">
+          <Link href="/" className="text-lg md:text-2xl font-bold font-heading">
             Next.js Example
           </Link>
 
