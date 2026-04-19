@@ -64,7 +64,7 @@ export default function UserMenu() {
             height={240}
             alt="User Avatar"
             referrerPolicy="no-referrer"
-            className="size-8 rounded-full border border-border"
+            className="size-8 rounded-full border"
           />
         )}
       </DrawerTrigger>
@@ -90,7 +90,7 @@ function UserMenuContent() {
     <div className="flex flex-col gap-4">
       {/* Hero */}
 
-      <div className="flex gap-4 pb-4 border-b border-border">
+      <div className="flex gap-4 pb-4 border-b">
         {session?.user?.image && (
           <Image
             src={session.user.image}

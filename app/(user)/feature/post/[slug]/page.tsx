@@ -58,7 +58,7 @@ export default async function PostPage({
               alt="Author Image"
               width={71}
               height={71}
-              className="rounded-full border border-border"
+              className="rounded-full border"
             />
             <Link href="/feature/post">
               <Button variant="link" className="px-0">

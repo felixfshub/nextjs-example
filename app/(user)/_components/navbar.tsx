@@ -17,7 +17,7 @@ export default function Navbar() {
   const { data: session } = useSession();
 
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLUListElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useOnClickOutside(containerRef, () => setOpen(false));
@@ -28,8 +28,8 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 w-full z-50">
-      <div>
-        <div className="relative flex items-center justify-start bg-card md:border-b border-border md:bg-card/90 md:backdrop-blur p-2 z-10">
+      <div ref={containerRef}>
+        <div className="relative flex items-center justify-start bg-card border-b md:bg-card/90 md:backdrop-blur p-2 z-10">
           <Link href="/" className="text-2xl font-bold font-heading">
             Next.js Example
           </Link>
@@ -60,26 +60,26 @@ export default function Navbar() {
               animate={{ height: "auto", transform: "translateY(0)" }}
               exit={{ height: 0, transform: "translateY(-30px)" }}
               transition={{ duration: 0.28, ease: "easeInOut" }}
-              className="absolute inset-x-0 z-8 overflow-hidden border-b border-border bg-card md:hidden"
+              className="absolute inset-x-0 z-8 overflow-hidden border-b bg-card md:hidden"
             >
-              <ul className="flex flex-col p-2 pb-4" ref={containerRef}>
+              <ul className="flex flex-col p-2 pb-4">
                 <NavContents />
               </ul>
             </motion.div>
           )}
         </AnimatePresence>
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.28 }}
-              className="fixed inset-0 bg-black/10 backdrop-blur-xs"
-            ></motion.div>
-          )}
-        </AnimatePresence>
       </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28 }}
+            className="fixed inset-0 bg-black/10 backdrop-blur-xs"
+          ></motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
@@ -132,7 +132,7 @@ function FeaturesDropdown({ className }: { className?: string }) {
       </Button>
 
       {openMenu && (
-        <div className="fixed left-2 mt-1 md:absolute md:left-0 md:mt-4 w-70 bg-card border border-border rounded-md shadow-lg p-2 z-50">
+        <div className="fixed left-2 mt-1 md:absolute md:left-0 md:mt-4 w-70 bg-card border rounded-md shadow-lg p-2 z-50">
           {features.map((card) => (
             <Link
               key={card.title}
