@@ -5,7 +5,7 @@ export function ArticleContainer({
   children,
   className,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }) {
   return (
@@ -17,7 +17,7 @@ export function ArticleContainer({
   );
 }
 
-export function Article({ children }: { children: ReactNode }) {
+export function Article({ children }: { children?: ReactNode }) {
   return (
     <article
       className="
