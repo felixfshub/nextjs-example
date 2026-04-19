@@ -7,13 +7,12 @@ interface Feature {
 const features: Feature[] = [
   {
     title: "Tailwind Animations",
-    description:
-      "Tailwind provides utility classes to animate your components without CSS.",
+    description: "Animate with utility classes instead of CSS.",
     href: "/feature/tailwind-animations",
   },
   {
     title: "Posts",
-    description: "Write your own posts or read posts written by other users.",
+    description: "Read posts or write posts yourself.",
     href: "/feature/post",
   },
   {
@@ -25,6 +24,11 @@ const features: Feature[] = [
     title: "Data Table",
     description: "Display data in a table format.",
     href: "/feature/data-table",
+  },
+  {
+    title: "Playground",
+    description: "Things are a bit messy here.",
+    href: "/feature/playground",
   },
 ];
 
