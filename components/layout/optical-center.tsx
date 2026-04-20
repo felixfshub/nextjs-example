@@ -8,7 +8,7 @@ export default function OpticalCenter({
   className?: string;
 }) {
   return (
-    <div className="flex flex-col w-full min-h-full">
+    <div className="flex flex-col w-full min-h-dvh">
       <div className="grow-2" />
 
       <div
