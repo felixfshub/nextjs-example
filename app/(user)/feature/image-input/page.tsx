@@ -12,7 +12,7 @@ export default function PlaygroundPage() {
   return (
     <ArticleContainer>
       <Article>
-        <h1>Playground</h1>
+        <h1>Image input</h1>
         <p>
           Inputs can accept files as well as text. The below input acceps a file
           of type jpeg, png, webp, or gif.
