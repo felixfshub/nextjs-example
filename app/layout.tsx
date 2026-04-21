@@ -30,9 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full h-dvh" suppressHydrationWarning>
+    <html lang="en" className="w-full h-full" suppressHydrationWarning>
       <body
-        className={`w-full h-dvh ${nunito.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`w-full h-full ${nunito.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
           <TooltipProvider>{children}</TooltipProvider>
