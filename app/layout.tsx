@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-full h-full" suppressHydrationWarning>
+    <html lang="en" className="w-full h-dvh" suppressHydrationWarning>
       <body
         className={`w-full h-full ${nunito.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
