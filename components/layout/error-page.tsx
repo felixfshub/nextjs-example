@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import OpticalCenter from "./optical-center";
+import CenterContainer from "./center-container";
 
 export default function ErrorPage({
   title,
@@ -9,13 +9,13 @@ export default function ErrorPage({
   description?: string;
 }) {
   return (
-    <OpticalCenter>
+    <CenterContainer>
       <div className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-2xl font-bold font-heading">{title || "Oops!"}</h1>
         <p className="text-muted-foreground">
           {description || "An error occurred"}
         </p>
       </div>
-    </OpticalCenter>
+    </CenterContainer>
   );
 }

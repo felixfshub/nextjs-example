@@ -14,11 +14,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import OpticalCenter from "@/components/layout/optical-center";
+import CenterContainer from "@/components/layout/center-container";
 
 export default function SignIn() {
   return (
-    <OpticalCenter>
+    <CenterContainer>
       <Card className="w-full max-w-lg m-4">
         <CardHeader>
           <CardTitle>Sign in</CardTitle>
@@ -71,6 +71,6 @@ export default function SignIn() {
           </div>
         </CardContent>
       </Card>
-    </OpticalCenter>
+    </CenterContainer>
   );
 }

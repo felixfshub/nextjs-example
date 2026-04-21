@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import CreatePostForm from "./_components/create-post-form";
 import HasPosted from "./_components/has-posted";
 import { redirect } from "next/navigation";
-import OpticalCenter from "@/components/layout/optical-center";
+import CenterContainer from "@/components/layout/center-container";
 
 export default async function CreatePostPage() {
   const session = await auth();
@@ -25,10 +25,10 @@ export default async function CreatePostPage() {
   }));
 
   return (
-    <OpticalCenter>
+    <CenterContainer>
       <div className="w-full max-w-2xl p-4">
         {hasPostedToday ? <HasPosted /> : <CreatePostForm />}
       </div>
-    </OpticalCenter>
+    </CenterContainer>
   );
 }
