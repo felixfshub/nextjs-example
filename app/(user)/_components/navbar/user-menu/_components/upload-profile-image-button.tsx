@@ -1,164 +1,127 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
+import Image from "next/image";
+import { Camera, Loader2 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { updateProfileImage } from "../actions";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Camera, Loader2 } from "lucide-react";
-import Image from "next/image";
+import { updateProfileImage } from "../actions";
+
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
+const ACCEPTED_FILE_TYPES = ALLOWED_TYPES.join(",");
+const MAX_CROPPED_SIZE_BYTES = 100 * 1024;
+
+type PreviewState = {
+  originalUrl: string;
+  croppedUrl: string;
+  file: File;
+} | null;
 
 export default function UploadProfileImageButton() {
   const [open, setOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [croppedPreviewUrl, setCroppedPreviewUrl] = useState<string | null>(
-    null,
-  );
+  const [preview, setPreview] = useState<PreviewState>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const cropImageToSquare = (
-    imageUrl: string,
-    fileType: string,
-  ): Promise<Blob> => {
-    return new Promise((resolve, reject) => {
-      const img = new window.Image();
-      img.crossOrigin = "anonymous";
-      img.onload = () => {
-        const size = Math.min(img.width, img.height);
-        const offsetX = (img.width - size) / 2;
-        const offsetY = (img.height - size) / 2;
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview.originalUrl);
+        URL.revokeObjectURL(preview.croppedUrl);
+      }
+    };
+  }, [preview]);
 
-        // Downscale to 200x200 for profile pictures
-        const maxDimension = 200;
-        const canvasSize = Math.min(size, maxDimension);
+  function resetForm() {
+    setError(null);
+    setPreview(null);
+  }
 
-        const canvas = document.createElement("canvas");
-        canvas.width = canvasSize;
-        canvas.height = canvasSize;
-        const ctx = canvas.getContext("2d");
-        if (!ctx) {
-          reject(new Error("Failed to get canvas context"));
-          return;
-        }
+  function handleDialogChange(nextOpen: boolean) {
+    setOpen(nextOpen);
 
-        ctx.drawImage(
-          img,
-          offsetX,
-          offsetY,
-          size,
-          size,
-          0,
-          0,
-          canvasSize,
-          canvasSize,
-        );
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              resolve(blob);
-            } else {
-              reject(new Error("Failed to create blob from canvas"));
-            }
-          },
-          fileType,
-          0.7, // 70% quality to reduce file size
-        );
-      };
-      img.onerror = () => reject(new Error("Failed to load image"));
-      img.src = imageUrl;
-    });
-  };
+    if (!nextOpen) {
+      resetForm();
+    }
+  }
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Validate file type
-      const allowedTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/webp",
-        "image/gif",
-      ];
-      if (!allowedTypes.includes(file.type)) {
-        setError(
-          "Invalid file type. Only JPEG, PNG, WebP, and GIF are allowed.",
-        );
+  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!ALLOWED_TYPES.includes(file.type as (typeof ALLOWED_TYPES)[number])) {
+      setError("Invalid file type. Only JPEG, PNG, and WebP are allowed.");
+      return;
+    }
+
+    setError(null);
+
+    try {
+      const originalUrl = URL.createObjectURL(file);
+      const croppedBlob = await cropImageToSquare(originalUrl, file.type);
+
+      if (croppedBlob.size > MAX_CROPPED_SIZE_BYTES) {
+        URL.revokeObjectURL(originalUrl);
+        setError("Cropped image too large. Maximum size is 100 KB.");
         return;
       }
 
-      setError(null);
-      const previewUrl = URL.createObjectURL(file);
-      setPreviewUrl(previewUrl);
+      const croppedUrl = URL.createObjectURL(croppedBlob);
 
-      const maxSize = 100 * 1024;
-      try {
-        const croppedBlob = await cropImageToSquare(previewUrl, file.type);
-
-        // Validate cropped file size
-        if (croppedBlob.size > maxSize) {
-          setError(
-            "Cropped image too large. Maximum size is 100KB. Try a smaller image.",
-          );
-          return;
-        }
-
-        const croppedFile = new File([croppedBlob], file.name, {
-          type: file.type,
-        });
-        setSelectedFile(croppedFile);
-        setCroppedPreviewUrl(URL.createObjectURL(croppedBlob));
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Failed to process image",
-        );
-      }
+      setPreview({
+        originalUrl,
+        croppedUrl,
+        file: new File([croppedBlob], file.name, { type: file.type }),
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to process image");
     }
-  };
+  }
 
-  const handleSubmit = () => {
-    if (!selectedFile) return;
+  function handleSubmit() {
+    if (!preview) return;
 
     startTransition(async () => {
       try {
         const formData = new FormData();
-        formData.append("file", selectedFile);
+        formData.append("file", preview.file);
 
         const response = await fetch("/api/upload", {
           method: "POST",
           body: formData,
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-          const data = await response.json();
           throw new Error(data.error || "Failed to upload image");
         }
 
-        const data = await response.json();
         await updateProfileImage(data.url);
-        setOpen(false);
-        setSelectedFile(null);
-        setPreviewUrl(null);
-        setCroppedPreviewUrl(null);
+
+        handleDialogChange(false);
         window.location.reload();
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to upload image");
       }
     });
-  };
+  }
+
+  const canUpload = Boolean(preview) && !isPending;
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleDialogChange}>
       <DialogTrigger asChild>
         <Button variant="ghost" className="justify-start">
           <Camera className="mr-2 size-4" />
@@ -170,26 +133,26 @@ export default function UploadProfileImageButton() {
         <DialogHeader>
           <DialogTitle>Upload Profile Image</DialogTitle>
           <DialogDescription id="upload-image-description">
-            Choose a new profile image. JPEG, PNG and WebP are supported. The
-            image will be cropped to a square.
+            JPEG, PNG, and WebP are supported. The image will be cropped to a
+            square.
           </DialogDescription>
         </DialogHeader>
 
         <div className="flex flex-col gap-4">
           <Input
             type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif"
+            accept={ACCEPTED_FILE_TYPES}
             onChange={handleFileChange}
             disabled={isPending}
           />
 
-          {croppedPreviewUrl && (
+          {preview && (
             <div className="flex justify-center">
-              <div className="relative w-24 h-24 bg-muted rounded-full border overflow-hidden">
+              <div className="relative h-24 w-24 overflow-hidden rounded-full border bg-muted">
                 <Image
-                  src={croppedPreviewUrl}
+                  src={preview.croppedUrl}
                   fill
-                  alt="Preview"
+                  alt="Cropped preview"
                   className="object-cover"
                 />
               </div>
@@ -206,7 +169,7 @@ export default function UploadProfileImageButton() {
             </Button>
           </DialogClose>
 
-          <Button onClick={handleSubmit} disabled={!selectedFile || isPending}>
+          <Button onClick={handleSubmit} disabled={!canUpload}>
             {isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -220,4 +183,55 @@ export default function UploadProfileImageButton() {
       </DialogContent>
     </Dialog>
   );
+}
+
+function cropImageToSquare(imageUrl: string, fileType: string): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    const image = new window.Image();
+    image.crossOrigin = "anonymous";
+
+    image.onload = () => {
+      const size = Math.min(image.width, image.height);
+      const offsetX = (image.width - size) / 2;
+      const offsetY = (image.height - size) / 2;
+      const outputSize = Math.min(size, 200);
+
+      const canvas = document.createElement("canvas");
+      canvas.width = outputSize;
+      canvas.height = outputSize;
+
+      const context = canvas.getContext("2d");
+      if (!context) {
+        reject(new Error("Failed to get canvas context"));
+        return;
+      }
+
+      context.drawImage(
+        image,
+        offsetX,
+        offsetY,
+        size,
+        size,
+        0,
+        0,
+        outputSize,
+        outputSize,
+      );
+
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error("Blob creation failed"));
+          }
+        },
+        fileType,
+        0.7,
+      );
+    };
+
+    image.onerror = () => reject(new Error("Failed to load image"));
+    image.src = imageUrl;
+  });
 }
