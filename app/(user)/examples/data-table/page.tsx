@@ -1,4 +1,4 @@
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import prisma from "@/lib/prisma";
 import { DataTable, PostRow, columns } from "./_components/data-table";
 
@@ -33,7 +33,7 @@ export default async function DemoPage() {
   const data = await getData();
 
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>Posts data table</h1>
         <p>
@@ -42,6 +42,6 @@ export default async function DemoPage() {
         </p>
         <DataTable columns={columns} data={data} />
       </Prose>
-    </StandardContainer>
+    </ProseContainer>
   );
 }

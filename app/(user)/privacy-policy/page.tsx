@@ -1,9 +1,9 @@
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import ExternalLink from "@/components/ui/external-link";
 
 export default function PrivacyPolicyPage() {
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>Privacy policy</h1>
         <p className="text-muted-foreground text-sm">
@@ -46,6 +46,6 @@ export default function PrivacyPolicyPage() {
           .
         </p>
       </Prose>
-    </StandardContainer>
+    </ProseContainer>
   );
 }

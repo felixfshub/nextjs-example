@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
-export function StandardContainer({
+export function ProseContainer({
   children,
   className,
 }: {

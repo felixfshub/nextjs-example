@@ -1,6 +1,6 @@
 "use client";
 
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import Image from "next/image";
@@ -9,7 +9,7 @@ export default function PlaygroundPage() {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
 
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>Image input</h1>
         <p>
@@ -76,6 +76,6 @@ export default function PlaygroundPage() {
           </div>
         )}
       </Prose>
-    </StandardContainer>
+    </ProseContainer>
   );
 }

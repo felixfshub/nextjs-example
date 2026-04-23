@@ -1,4 +1,4 @@
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
@@ -14,7 +14,7 @@ import { ArrowBigDown } from "lucide-react";
 
 export default function TailwindAnimations() {
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>Tailwind animations</h1>
         <p>
@@ -106,6 +106,6 @@ export default function TailwindAnimations() {
         <p>The Shadcn spinner component uses animate-spin internally.</p>
         <Spinner />
       </Prose>
-    </StandardContainer>
+    </ProseContainer>
   );
 }

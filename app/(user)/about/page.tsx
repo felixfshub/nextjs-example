@@ -1,9 +1,9 @@
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>About</h1>
         <p>
@@ -34,6 +34,6 @@ export default function About() {
           to include applications rendered on the server-side.
         </p>
       </Prose>
-    </StandardContainer>
+    </ProseContainer>
   );
 }

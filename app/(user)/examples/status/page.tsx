@@ -1,9 +1,9 @@
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import Terminal from "./_components/terminal";
 
 export default async function Test() {
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>Status</h1>
         <p>
@@ -12,6 +12,6 @@ export default async function Test() {
         </p>
       </Prose>
       <Terminal />
-    </StandardContainer>
+    </ProseContainer>
   );
 }

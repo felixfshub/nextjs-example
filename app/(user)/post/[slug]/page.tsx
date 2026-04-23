@@ -1,4 +1,4 @@
-import { Prose, StandardContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/layout/prose";
 import ErrorPage from "@/components/layout/error-page";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
@@ -27,7 +27,7 @@ export default async function PostPage({
   }
 
   return (
-    <StandardContainer>
+    <ProseContainer>
       <Prose>
         <h1>{post!.title}</h1>
         <p className="text-muted-foreground text-sm">By {post.author.name}</p>
@@ -77,6 +77,6 @@ export default async function PostPage({
           </>
         )}
       </Prose>
-    </StandardContainer>
+    </ProseContainer>
   );
 }
