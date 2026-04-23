@@ -29,10 +29,7 @@ export default async function RemovedPostsPage() {
         <div className="grid gap-4">
           {posts.map((post) => (
             <div key={post.id}>
-              <Link
-                href={`/feature/post/${post.id}`}
-                className="hover:underline"
-              >
+              <Link href={`/${post.id}`} className="hover:underline">
                 <p className="text-lg font-semibold text-primary">
                   {post.title}
                 </p>

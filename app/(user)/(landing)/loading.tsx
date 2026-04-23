@@ -1,36 +1,42 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function Loading() {
   return (
-    <div className="flex flex-col gap-4 w-full max-w-4xl mx-auto p-4">
+    <div className="flex flex-col gap-6 w-full max-w-5xl mx-auto p-4">
       {/* Header Skeleton */}
-      <div className="text-center mb-4">
-        <Skeleton className="w-24 h-24 rounded-full mx-auto my-4" />
-        <Skeleton className="h-8 w-48 mx-auto mb-2" />
-        <Skeleton className="h-4 w-64 mx-auto mb-4" />
-        <Skeleton className="h-10 w-36 mx-auto" />
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div className="space-y-2">
+          <Skeleton className="h-9 w-32" /> {/* Title */}
+          <Skeleton className="h-4 w-64" /> {/* Subtitle */}
+        </div>
+        <Skeleton className="h-10 w-28 self-start" /> {/* Button */}
       </div>
 
-      {/* AppContents Skeleton (Grid) */}
-      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i} className="flex flex-col justify-between">
+      {/* Posts List Skeleton */}
+      <div className="grid gap-4">
+        {[...Array(3)].map((_, i) => (
+          <Card key={i} className="overflow-hidden">
             <CardHeader>
-              <Skeleton className="h-5 w-3/4" />
+              <Skeleton className="h-6 w-3/4" /> {/* Post Title */}
             </CardHeader>
             <CardContent>
-              <Skeleton className="h-4 w-full mb-2" />
-              <Skeleton className="h-4 w-5/6" />
+              <div className="space-y-2 mb-4">
+                <Skeleton className="h-4 w-full" /> {/* Content Line 1 */}
+                <Skeleton className="h-4 w-5/6" /> {/* Content Line 2 */}
+              </div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Skeleton className="h-6 w-6 rounded-full" /> {/* Avatar */}
+                  <Skeleton className="h-4 w-24" /> {/* Author Name */}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Skeleton className="h-4 w-32" /> {/* Date */}
+                  <Skeleton className="h-4 w-4" /> {/* Icon */}
+                </div>
+              </div>
             </CardContent>
-            <CardFooter>
-              <Skeleton className="h-9 w-20" />
-            </CardFooter>
           </Card>
         ))}
       </div>

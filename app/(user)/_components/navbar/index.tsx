@@ -1,21 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef, ReactNode } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { SessionProvider, useSession } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/mode-toggle";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { House, Menu, X } from "lucide-react";
 import Link from "next/link";
 import useOnClickOutside from "@/hooks/use-on-click-outside";
-import { cn } from "@/lib/utils";
 import UserMenu from "./user-menu";
-import features from "../../config/feature";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar() {
-  const { data: session } = useSession();
-
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -29,9 +25,9 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 w-full z-50">
       <div ref={containerRef}>
-        <div className="relative flex items-center justify-start bg-card border-b md:bg-card/90 md:backdrop-blur p-2 z-10">
+        <div className="relative flex items-center justify-start bg-card border-b md:bg-card/90 md:backdrop-blur p-2 px-3 z-10">
           <Link href="/" className="text-lg md:text-2xl font-bold font-heading">
-            Next.js Example
+            <House className="h-6 w-6" />
           </Link>
 
           <ul className="hidden md:flex md:items-center mx-2">
@@ -89,76 +85,17 @@ function NavContents() {
   return (
     <>
       <Link href="/">
-        <Button variant="ghost">Home</Button>
+        <Button variant="ghost">Read</Button>
+      </Link>
+      <Link href="/create">
+        <Button variant="ghost">Create</Button>
       </Link>
       <Link href="/about">
         <Button variant="ghost">About</Button>
       </Link>
-      <FeaturesDropdown className="hidden md:block" />
-      <div className="md:hidden flex flex-col p-2.5">
-        <h1 className="font-heading text-lg font-bold mb-2">Features</h1>
-        {features.map((card) => (
-          <Link key={card.title} className="pl-2" href={String(card.href)}>
-            <Button variant="ghost">{card.title}</Button>
-          </Link>
-        ))}
-      </div>
-
       <Link href="/privacy-policy">
         <Button variant="ghost">Privacy Policy</Button>
       </Link>
     </>
-  );
-}
-
-function FeaturesDropdown({ className }: { className?: string }) {
-  const [openMenu, setOpenMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useOnClickOutside(menuRef, () => setOpenMenu(false));
-
-  return (
-    <div ref={menuRef} className={cn("relative", className)}>
-      <Button
-        variant="ghost"
-        onClick={() => setOpenMenu(!openMenu)}
-        className="flex items-center gap-1"
-      >
-        Features
-        <ChevronDown
-          className={cn("h-4 w-4 transition-transform", {
-            "rotate-180": openMenu,
-          })}
-        />
-      </Button>
-
-      {openMenu && (
-        <div className="fixed left-2 mt-1 md:absolute md:left-0 md:mt-4 w-70 bg-card border rounded-md shadow-lg p-2 z-50">
-          {features.map((card) => (
-            <Link
-              key={card.title}
-              onClick={() => {
-                setOpenMenu(false);
-              }}
-              href={card.href || "#"}
-            >
-              <div
-                className={cn(
-                  "px-3 py-2 rounded hover:bg-accent transition-colors cursor-pointer",
-                  !card.href && "opacity-50 cursor-not-allowed",
-                )}
-              >
-                <div className="font-medium text-sm">{card.title}</div>
-                {card.description && (
-                  <div className="text-xs text-muted-foreground">
-                    {card.description}
-                  </div>
-                )}
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
   );
 }
