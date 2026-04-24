@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { createPost } from "../actions";
+import { createPost } from "./actions";
 import { Spinner } from "@/components/ui/spinner";
 
 export default function CreatePostForm() {
@@ -32,7 +32,6 @@ export default function CreatePostForm() {
       // Redirect
       router.push("/post");
     } catch (error) {
-      console.error("Failed to create post:", error);
       setErrorMessage(
         error instanceof Error ? error.message : "An unknown error occurred",
       );
@@ -95,10 +94,7 @@ export default function CreatePostForm() {
           <Button
             type="submit"
             disabled={
-              isSubmitting ||
-              isSubmitted ||
-              !title.trim() ||
-              content.trim().length < 10
+              isSubmitting || isSubmitted || !title.trim() || !content.trim()
             }
           >
             {isSubmitting || isSubmitted ? (
