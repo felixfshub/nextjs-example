@@ -3,7 +3,7 @@ import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowUpRight, CircleCheckBig, ShieldUser } from "lucide-react";
+import { CircleCheckBig, ShieldUser } from "lucide-react";
 import { auth } from "@/auth";
 import {
   Tooltip,
@@ -35,6 +35,7 @@ export default async function PostPage() {
             Browse recent posts created by users.
           </p>
         </div>
+
         <Link href="/post/create" className="self-start">
           <Button>Create Post</Button>
         </Link>
@@ -60,19 +61,16 @@ export default async function PostPage() {
                   {post.isApproved ? post.title : "Content Removed"}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p
-                  className={cn(
-                    "text-sm text-muted-foreground mb-4 whitespace-pre-line",
-                    !post.isApproved && "italic",
-                  )}
-                >
-                  {post.isApproved
-                    ? post.content
-                    : "This post was removed because it was deemed inappropriate for this platform."}
+
+              <CardContent className="space-y-4">
+                {/* Preview Content */}
+                <p className="text-sm text-muted-foreground line-clamp-2 md:line-clamp-1 whitespace-pre-wrap">
+                  {post.content}
                 </p>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-2">
+
+                {/* Meta */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2 flex-wrap">
                     {post.author?.image ? (
                       <Image
                         src={post.author.image}
@@ -96,10 +94,12 @@ export default async function PostPage() {
                     {post.featured && <FeaturedBadge />}
                     {post.author.email === adminEmail && <AdminBadge />}
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between md:justify-end gap-2">
                     {new Date(post.createdAt).toLocaleString()}
                     <Link href={`/post/${post.id}`}>
-                      <ArrowUpRight className="size-4" />
+                      <Button variant="outline" size="sm">
+                        Read Full
+                      </Button>
                     </Link>
                   </div>
                 </div>
