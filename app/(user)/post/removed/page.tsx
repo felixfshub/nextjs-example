@@ -1,6 +1,6 @@
 import Link from "next/link";
 import prisma from "@/lib/prisma";
-import { ProseContainer } from "@/components/layout/prose";
+import { ProseContainer } from "@/components/typography/prose";
 
 export default async function RemovedPostsPage() {
   const posts = await prisma.post.findMany({

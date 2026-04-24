@@ -1,4 +1,4 @@
-import { Prose, ProseContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/typography/prose";
 import ErrorPage from "@/components/layout/error-page";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";

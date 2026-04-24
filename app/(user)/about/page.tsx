@@ -1,4 +1,4 @@
-import { Prose, ProseContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/typography/prose";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
@@ -7,11 +7,10 @@ export default function About() {
       <Prose>
         <h1>About</h1>
         <p>
-          This is a Next.js application bootstrapped with
-          <span className="font-mono"> create-next-app </span>, deployed on
-          Vercel. It uses Auth.js for authentication, Prisma PostgreSQL as a
-          database, Prisma as an ORM, framer-motion for animations, and Shadcn
-          for UI components.
+          This is a Next.js application bootstrapped with{" "}
+          <code>create-next-app</code>, deployed on Vercel. It uses Auth.js for
+          authentication, Prisma PostgreSQL as a database, Prisma as an ORM,
+          Motion for animations, and Shadcn for UI components.
         </p>
         <a href="https://github.com/faseehfs/nextjs-example">
           <Button variant="outline">View Source Code</Button>

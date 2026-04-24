@@ -18,5 +18,13 @@ export function ProseContainer({
 }
 
 export function Prose({ children }: { children?: ReactNode }) {
-  return <div className="prose dark:prose-invert max-w-none">{children}</div>;
+  return (
+    <div
+      className={cn(
+        "prose dark:prose-invert prose-headings:font-heading max-w-none",
+      )}
+    >
+      {children}
+    </div>
+  );
 }

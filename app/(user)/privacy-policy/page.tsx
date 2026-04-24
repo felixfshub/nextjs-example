@@ -1,4 +1,4 @@
-import { Prose, ProseContainer } from "@/components/layout/prose";
+import { Prose, ProseContainer } from "@/components/typography/prose";
 import ExternalLink from "@/components/ui/external-link";
 
 export default function PrivacyPolicyPage() {

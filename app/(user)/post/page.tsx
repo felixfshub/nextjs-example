@@ -11,7 +11,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { ProseContainer } from "@/components/layout/prose";
+import { ProseContainer } from "@/components/typography/prose";
 
 export default async function PostPage() {
   const session = await auth();
