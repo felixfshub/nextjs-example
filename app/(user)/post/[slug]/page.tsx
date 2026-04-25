@@ -43,7 +43,7 @@ export default async function PostPage({
             </p>
           </div>
         )}
-        <p>{post.content}</p>
+        <p style={{ whiteSpace: "pre-line" }}>{post.content}</p>
         {post.isApproved && (
           <>
             <Separator className="my-4" />
