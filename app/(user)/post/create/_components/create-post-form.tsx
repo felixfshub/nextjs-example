@@ -27,14 +27,17 @@ export default function CreatePostForm() {
     setIsSubmitting(true);
 
     try {
-      await createPost({ title, content });
+      const result = await createPost({ title, content });
+
+      if (result?.error) {
+        setErrorMessage(result.error);
+        return;
+      }
+
       setIsSubmitted(true);
-      // Redirect
       router.push("/post");
-    } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : "An unknown error occurred",
-      );
+    } catch {
+      setErrorMessage("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
